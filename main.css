@@ -1,0 +1,11 @@
+* {
+	box-sizing: border-box;
+	font-family: "open sans";
+}
+
+.question {
+	margin: 2em;
+	padding: 1em;
+	width: 65%;
+	border: solid black 1px;
+}
