@@ -2,57 +2,40 @@
 <html>
 
 <head>
-    <title>Pick the fruit!</title>
+    <title>Quiz Game</title>
     <link rel="stylesheet" type="text/css" href="main.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="app.js"></script>
 </head>
 
 <body>
-    <div class="first question">
-        <h3>Pick the fruit:</h3>
-        <ul>
-            <li class="incorrect">Pickup truck</li>
-            <li class="correct">Pineapple</li>
-            <li class="incorrect">Porcupine</li>
-            <li class="incorrect">Police officer</li>
-        </ul>
-    </div>
-    <div class="second question">
-        <h3>Pick the fruit:</h3>
-        <ul>
-            <li class="incorrect">Balloon</li>
-            <li class="incorrect">Ballerina</li>
-            <li class="correct">Banana</li>
-            <li class="incorrect">Bagel</li>
-        </ul>
-    </div>
-    <div class="third question">
-        <h3>Pick the fruit:</h3>
-        <ul>
-            <li class="incorrect">Avalanche</li>
-            <li class="incorrect">Avenue</li>
-            <li class="incorrect">Albequerque, New Mexico</li>
-            <li class="correct">Apple</li>
-        </ul>
-    </div>
-    <div class="fourth question">
-        <h3>Pick the fruit:</h3>
-        <ul>
-            <li class="correct">Orange</li>
-            <li class="incorrect">Opossum</li>
-            <li class="incorrect">Orangutan</li>
-            <li class="incorrect">Octopus</li>
-        </ul>
-    </div>
-    <div class="fifth question">
-        <h3>Pick the fruit:</h3>
-        <ul>
-            <li class="incorrect">China</li>
-            <li class="correct">Cherry</li>
-            <li class="incorrect">Chinchilla</li>
-            <li class="incorrect">Challenging questions</li>
-        </ul>
+    <div class="container">
+        <div class="upper-notification"></div>
+        <div class="section-heading">
+            <div class="welcome-message">
+                <h2>Welcome to the Quiz Game!</h2>
+                <button class="begin">Begin</button>
+            </div> 
+        </div>
+        <div class="seciton-paragraph"></div>
+        <div class="question-template hidden">
+            <p class="question"></p>
+            <br>
+            <input type="radio" id="option1" name="options" value="1">
+            <label id="o1"> Option 1</label>
+            </br>
+            <br>
+            <input type="radio" id="option2" name="options" value="2">
+            <label id="o2"> Option 2</label>
+            </br>
+            <br>
+            <input type="radio" id="option3" name="options" value="3">
+            <label id="o3"> Option 3 </label>
+            </br>
+            <button class="submit increment">Submit</button>
+        </div>
+        <div class="lower-notification"></div>
     </div>
 </body>
 
