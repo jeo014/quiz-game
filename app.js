@@ -1,8 +1,8 @@
-var quizLength = '3';
-var qSelector = '0';
-var questionNumber = '1';
+var quizLength = 3;
+var qSelector = 0;
+var questionNumber = 1;
 var score = 
-	{correct: '0',};
+	{correct: 0,};
 
 var questionsAndAnswers = [
 	{
@@ -35,13 +35,22 @@ var currentOption3 = (questionsAndAnswers[qSelector].o3);
 var currentAnswer = (questionsAndAnswers[qSelector].answer);
 var currentScore = (score.correct)
 
+function setCurrentQuestion () {
+	currentQuestion = (questionsAndAnswers[qSelector].question);
+	currentOption1 = (questionsAndAnswers[qSelector].o1);
+	currentOption2 = (questionsAndAnswers[qSelector].o2);
+	currentOption3 = (questionsAndAnswers[qSelector].o3);
+	currentAnswer = (questionsAndAnswers[qSelector].answer);
+	currentScore = (score.correct);
+}
 
 function showQuestion() {
-	    $(".question").html(currentQuestion);
-		$("#o1").html(currentOption1);
-		$("#o2").html(currentOption2);
-		$("#o3").html(currentOption3);
-		$(".upper-notification").html("Your score is " + currentScore + " of " + quizLength);
+	setCurrentQuestion();
+    $(".question").html(currentQuestion);
+	$("#o1").html(currentOption1);
+	$("#o2").html(currentOption2);
+	$("#o3").html(currentOption3);
+	$(".upper-notification").html("Your score is " + currentScore + " of " + quizLength);
 }
 
 function initiateGame() {
@@ -61,8 +70,8 @@ function questionSubmit() {
 	    else {
 	     	$(".section-paragraph").html("Bummer! Your last answer was incorrect.");
 	    };
-	    var qSelector = qSelector++;
-	    var questionNumber = questionNumber++;
+	    qSelector = qSelector + 1;
+	    questionNumber = questionNumber + 1;
 	    showQuestion();
 	    console.log(questionNumber);
 	    console.log(qSelector);
