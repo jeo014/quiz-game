@@ -7,49 +7,45 @@ var score =
 var questionsAndAnswers = [
 	{
 		question: 'Pick the fruit:',
-		o1: 'Pineapple',
-		o2: 'Police Officer',
-		o3: 'Porcupine',
-		answer: '1'
+		options: ['Pineapple', 'Police Officer', 'Porcupine'],
+		answer: 'Pineapple'
 	},
 	{
 		question: 'Pick the animal:',
-		o1: 'Orange',
-		o2: 'Octopus',
-		o3: 'Ocean',
-		answer: '2'
+		options: ['Orange','Octopus','Ocean'],
+		answer: 'Octopus'
 	},
 	{
 		question: 'Pick the superhero:',
-		o1: 'Catman',
-		o2: 'Ratman',
-		o3: 'Batman',
-		answer: '3'
+		options: ['Catman','Ratman','Batman'],
+		answer: 'Batman'
 	}
 ];
 
 var currentQuestion = (questionsAndAnswers[qSelector].question);
-var currentOption1 = (questionsAndAnswers[qSelector].o1);
-var currentOption2 = (questionsAndAnswers[qSelector].o2);
-var currentOption3 = (questionsAndAnswers[qSelector].o3);
+var currentOptions = (questionsAndAnswers[qSelector].options);
 var currentAnswer = (questionsAndAnswers[qSelector].answer);
 var currentScore = (score.correct)
 
-function setCurrentQuestion () {
+function setCurrentQuestion() {
 	currentQuestion = (questionsAndAnswers[qSelector].question);
-	currentOption1 = (questionsAndAnswers[qSelector].o1);
-	currentOption2 = (questionsAndAnswers[qSelector].o2);
-	currentOption3 = (questionsAndAnswers[qSelector].o3);
+	currentOptions = (questionsAndAnswers[qSelector].options);
 	currentAnswer = (questionsAndAnswers[qSelector].answer);
 	currentScore = (score.correct);
 }
 
+function formatOption(optionArray) {
+	for (var i=0; i < optionArray.length; i++){
+		return '<br><input type="radio" id="' + optionArray[i] + 
+		'" name="options" value="' + optionArray[i] + '"><label id="'
+		+ optionArray[i] +'">' + optionArray[i] + '</label></br>'		
+	}
+};
+
 function showQuestion() {
 	setCurrentQuestion();
     $(".question").html(currentQuestion);
-	$("#o1").html(currentOption1);
-	$("#o2").html(currentOption2);
-	$("#o3").html(currentOption3);
+	$(".options").html(formatOption(currentOptions));
 	$(".upper-notification").html("Your score is " + currentScore + " of " + quizLength);
 }
 
