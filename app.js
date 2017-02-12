@@ -12,7 +12,7 @@ var questionsAndAnswers = [
 	},
 	{
 		question: 'Pick the animal:',
-		options: ['Orange','Octopus','Ocean'],
+		options: ['Orange','Octopus','Ocean','Olive'],
 		answer: 'Octopus'
 	},
 	{
@@ -27,25 +27,32 @@ var currentOptions = (questionsAndAnswers[qSelector].options);
 var currentAnswer = (questionsAndAnswers[qSelector].answer);
 var currentScore = (score.correct)
 
+function formatOption(optionArray) {
+	var formattedOptions = [];
+	for (var i=0; i < optionArray.length; i++){
+		formattedOptions.push('<br><input type="radio" id="' + optionArray[i] + 
+		'" name="options" value="' + optionArray[i] + '"><label id="' + optionArray[i] +
+		'">' + optionArray[i] + '</label></br>')	
+	}
+	return formattedOptions;
+};
+
 function setCurrentQuestion() {
 	currentQuestion = (questionsAndAnswers[qSelector].question);
-	currentOptions = (questionsAndAnswers[qSelector].options);
+	currentOptions = (formatOption(questionsAndAnswers[qSelector].options));
 	currentAnswer = (questionsAndAnswers[qSelector].answer);
 	currentScore = (score.correct);
 }
 
-function formatOption(optionArray) {
-	for (var i=0; i < optionArray.length; i++){
-		return '<br><input type="radio" id="' + optionArray[i] + 
-		'" name="options" value="' + optionArray[i] + '"><label id="'
-		+ optionArray[i] +'">' + optionArray[i] + '</label></br>'		
-	}
-};
-
 function showQuestion() {
+    if (questionNumber > quizLength) {
+	  $(".question-template, .upper-notification").addClass("hidden");
+	  $(".section-paragraph").html("Game Over. You scored " + score.correct + " out of " + quizLength);
+	  $(".lower-notification").append('<br><button class="reload">Begin Again</button></br>');
+	};
 	setCurrentQuestion();
     $(".question").html(currentQuestion);
-	$(".options").html(formatOption(currentOptions));
+	$(".options").html(currentOptions);
 	$(".upper-notification").html("Your score is " + currentScore + " of " + quizLength);
 }
 
@@ -74,18 +81,14 @@ function questionSubmit() {
 	});
 }
 
-// end game
-if (questionNumber > quizLength) {
-  $(".question-template").addClass("hidden");
-  $(".section-paragraph").html("Game Over. You scored " + score.correct + " out of " + quizLength);
-  $(".lower-notification").append('<br><button class="reload">Begin Again</button></br>');
-};
-  
-$(".js-results-message").on("click", ".reload", function(){
-  location.reload();
-})
+function endGame() {
+	$(".lower-notification").on("click", ".reload", function(){
+	  location.reload();
+	})
+}
 
 $(function(){
 	initiateGame();
 	questionSubmit();
+	endGame();
 })
